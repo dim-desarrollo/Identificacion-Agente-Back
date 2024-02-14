@@ -168,7 +168,8 @@ c
 
 
                   dir ("${CARPETA_APLICACION}"){
-                      sh 'dotnet publish ${CARPETA_APLICACION}inspectores-api.csproj -c Realese -o published'
+                      //sh 'dotnet publish ${CARPETA_APLICACION}inspectores-api.csproj -c Realese -o published'
+                      sh 'dotnet publish inspectores_api -c Realese -o published'
                   }
               }
           }
