@@ -186,7 +186,7 @@ c
 
                     //sh "docker run -d -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN}"
 
-                    sh "docker create -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --network= estaciones_my-network-inspector --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN} -e ASPNETCORE_ENVIROMENT=Production"
+                    sh "docker create -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --network estaciones_my-network-inspector --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN} -e ASPNETCORE_ENVIROMENT=Production"
 
                 }
 
