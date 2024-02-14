@@ -53,8 +53,8 @@ agent any
         SONARQUBE_CREDENCIALES = 'sonarqube'
         PUERTO_EXTERNO = 2020
 
-        IDENTIFICADOR_UNICO_BUILD = 'backEnd-inspectores' //agregado a mano, ver si se hace de otra manera
-        IDENTIFICADOR_IMAGEN = 'backEnd-inspectores'
+        IDENTIFICADOR_UNICO_BUILD = 'backend-inspectores' //agregado a mano, ver si se hace de otra manera
+        IDENTIFICADOR_IMAGEN = 'backend-inspectores'
 
         CANAL_SLACK = "#canal-slack"            // TODO: Por reemplazar
         CORREO_A_NOTIFICAR = "dim@gmail.com"    // TODO: Por reemplazar
@@ -170,7 +170,7 @@ c
 
          environment{
              PUERTO_INTERNO = 8080
-             NOMBRE_CONTENEDOR = "backEnd-inspectores"
+             NOMBRE_CONTENEDOR = "backend-inspectores"
          }
 
         steps {
