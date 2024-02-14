@@ -112,6 +112,8 @@ agent any
         SONAR_PORT = '9000' //puerto donde esta trabajando el contenedor
         SONAR_SRC = 'src/'
         SONAR_ENCODING = 'UTF-8'
+        DOTNET_VERSION = sh(script: 'dotnet --version', returnStdout: true).trim()
+
 
     }
 
@@ -162,6 +164,8 @@ c
 
                   echo "Docker version: ${DOCKER_VERSION}"
                   //echo "Node version: ${NODE_VERSION}"
+                  sh 'echo "dotnet version: ${DOTNET_VERSION}"'
+
 
                   dir ("${CARPETA_APLICACION}"){
                       sh 'dotnet publish ${CARPETA_APLICACION}inspectores-api.csproj -c Realese -o published'
