@@ -39,6 +39,7 @@ agent any
         jdk 'java20'
         dockerTool 'docker-2'
         nodejs 'node-js'
+        net 'net8.0.1'
     }
 
     environment {
@@ -160,7 +161,9 @@ c
                   NODE_VERSION = sh(returnStdout: true, script: 'npm -v').trim()
 
                   echo "Docker version: ${DOCKER_VERSION}"
-                  echo "Node version: ${NODE_VERSION}"
+                  //echo "Node version: ${NODE_VERSION}"
+
+                  sh 'dotnet publish ./inspectores-api.csproj -c Realese -o published'
 
               }
           }
