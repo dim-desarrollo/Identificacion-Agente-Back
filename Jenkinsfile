@@ -163,8 +163,9 @@ c
                   echo "Docker version: ${DOCKER_VERSION}"
                   //echo "Node version: ${NODE_VERSION}"
 
-                  sh 'dotnet publish ./inspectores-api.csproj -c Realese -o published'
-
+                  dir ("${CARPETA_APLICACION}"){
+                      sh 'dotnet publish ${CARPETA_APLICACION}/inspectores-api.csproj -c Realese -o published'
+                  }
               }
           }
       }
