@@ -164,7 +164,7 @@ c
                   //echo "Node version: ${NODE_VERSION}"
 
                   dir ("${CARPETA_APLICACION}"){
-                      sh 'dotnet publish ${CARPETA_APLICACION}/inspectores-api.csproj -c Realese -o published'
+                      sh 'dotnet publish ${CARPETA_APLICACION}inspectores-api.csproj -c Realese -o published'
                   }
               }
           }
