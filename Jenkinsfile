@@ -45,16 +45,16 @@ agent any
 
         HORA_DESPLIEGUE = sh(returnStdout: true, script: "date '+%A %W %Y %X'").trim()
 
-        GITHUB_MONOLITO_URL = "https://github.com/dim-desarrollo/front-ubicacion-padrones.git"
+        GITHUB_MONOLITO_URL = "https://github.com/dim-desarrollo/Identificacion-Agente-Back.git"
 
         GITHUB_CREDENCIALES = "github-test-1"
         GITHUB_CREDENCIALES_DEPLOY = "dim-desarrollo"
 
         SONARQUBE_CREDENCIALES = 'sonarqube'
-        PUERTO_EXTERNO = 3000
+        PUERTO_EXTERNO = 2020
 
-        IDENTIFICADOR_UNICO_BUILD = 'front-ubicacion-padrones' //agregado a mano, ver si se hace de otra manera
-        IDENTIFICADOR_IMAGEN = 'front-ubicacion-padrones'
+        IDENTIFICADOR_UNICO_BUILD = 'backEnd-inspectores' //agregado a mano, ver si se hace de otra manera
+        IDENTIFICADOR_IMAGEN = 'backEnd-inspectores'
 
         CANAL_SLACK = "#canal-slack"            // TODO: Por reemplazar
         CORREO_A_NOTIFICAR = "dim@gmail.com"    // TODO: Por reemplazar
@@ -73,7 +73,7 @@ agent any
 
         steps {
 
-            discordSend description: "Inicio de deploy en DEV!!!", footer: "Inicado", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy front-ubicacion-padronesEstaciones", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
+            discordSend description: "Inicio de deploy en DEV!!!", footer: "Inicado", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy backEnd-inspectores", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
 
         }
 
@@ -169,8 +169,8 @@ c
      stage('Build and run to Docker') {
 
          environment{
-             PUERTO_INTERNO = 80
-             NOMBRE_CONTENEDOR = "front-ubicacion-padrones"
+             PUERTO_INTERNO = 8080
+             NOMBRE_CONTENEDOR = "backEnd-inspectores"
          }
 
         steps {
@@ -184,17 +184,9 @@ c
 
                     sh "docker build -t ${IDENTIFICADOR_IMAGEN} ."
 
-                    // Revisar si existe un contenedor con el mismo nombre
-                    def contenedorExistente = sh(script: "docker ps -aqf name=${NOMBRE_CONTENEDOR}", returnStdout: true).trim()
+                    //sh "docker run -d -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN}"
 
-                    // Verifica si existe un contenedor con el mismo nombre
-                    if (contenedorExistente) {
-                        // Si existe el contenedor, pausarlo y luego eliminarlo
-                        sh "docker stop $contenedorExistente"
-                        sh "docker rm -f $contenedorExistente"
-                    }
-
-                    sh "docker run -d -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN}"
+                    docker create -d -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN} -e ASPNETCORE_ENVIROMENT=Development 
 
                 }
 
@@ -210,7 +202,7 @@ c
 
             sh "echo ${HORA_DESPLIEGUE}"
 
-            discordSend description: "(DEV) Deploy front-ubicacion-padronesEstaciones echo!!!", footer: "Hora de inicio de despliegue: ${HORA_DESPLIEGUE} ", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy front-ubicacion-padronesEstaciones", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
+            discordSend description: "(DEV) Deploy backEnd-inspectores echo!!!", footer: "Hora de inicio de despliegue: ${HORA_DESPLIEGUE} ", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy front-ubicacion-padronesEstaciones", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
 
         }
 
