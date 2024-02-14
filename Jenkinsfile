@@ -186,7 +186,7 @@ c
 
                     //sh "docker run -d -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN}"
 
-                    sh "docker create -d -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN} -e ASPNETCORE_ENVIROMENT=Development"
+                    sh "docker create -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN} -e ASPNETCORE_ENVIROMENT=Development"
 
                 }
 
