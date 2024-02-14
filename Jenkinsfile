@@ -39,7 +39,7 @@ agent any
         jdk 'java20'
         dockerTool 'docker-2'
         nodejs 'node-js'
-        dotnetBuild 'net8.0.1'
+        dotnet 'net8.0.1'
     }
 
     environment {
