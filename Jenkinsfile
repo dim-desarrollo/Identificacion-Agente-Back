@@ -39,6 +39,7 @@ agent any
         jdk 'java20'
         dockerTool 'docker-2'
         nodejs 'node-js'
+        dotnet 'net8.0.1'
     }
 
     environment {
@@ -111,6 +112,8 @@ agent any
         SONAR_PORT = '9000' //puerto donde esta trabajando el contenedor
         SONAR_SRC = 'src/'
         SONAR_ENCODING = 'UTF-8'
+        DOTNET_VERSION = sh(script: 'dotnet --version', returnStdout: true).trim()
+
 
     }
 
@@ -160,8 +163,14 @@ c
                   NODE_VERSION = sh(returnStdout: true, script: 'npm -v').trim()
 
                   echo "Docker version: ${DOCKER_VERSION}"
-                  echo "Node version: ${NODE_VERSION}"
+                  //echo "Node version: ${NODE_VERSION}"
+                  sh 'echo "dotnet version: ${DOTNET_VERSION}"'
 
+
+                  dir ("${CARPETA_APLICACION}"){
+                      //sh 'dotnet publish ${CARPETA_APLICACION}inspectores-api.csproj -c Realese -o published'
+                      sh 'dotnet publish inspectores_api -c Realese -o published'
+                  }
               }
           }
       }
@@ -186,7 +195,7 @@ c
 
                     //sh "docker run -d -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN}"
 
-                    sh "docker create -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN} -e ASPNETCORE_ENVIROMENT=Development"
+                    sh "docker run -d -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --network estaciones_my-network-inspector --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN} -e ASPNETCORE_ENVIRONMENT=Production" 
 
                 }
 
