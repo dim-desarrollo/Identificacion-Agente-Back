@@ -39,7 +39,7 @@ agent any
         jdk 'java20'
         dockerTool 'docker-2'
         nodejs 'node-js'
-        dotnet 'net8.0.1'
+        //dotnet 'net8.0.1'
     }
 
     environment {
@@ -164,13 +164,15 @@ c
 
                   echo "Docker version: ${DOCKER_VERSION}"
                   //echo "Node version: ${NODE_VERSION}"
-                  sh 'echo "dotnet version: ${DOTNET_VERSION}"'
+                  //sh 'echo "dotnet version: ${DOTNET_VERSION}"'
 
-
+                    /*
                   dir ("${CARPETA_APLICACION}"){
                       //sh 'dotnet publish ${CARPETA_APLICACION}inspectores-api.csproj -c Realese -o published'
                       sh 'dotnet publish inspectores_api -c Realese -o published'
                   }
+
+                  */
               }
           }
       }
