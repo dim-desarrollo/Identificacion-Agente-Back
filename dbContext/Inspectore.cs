@@ -23,5 +23,9 @@ public partial class Inspectore
 
     public string? UrlImagen { get; set; }
 
+    public string? Tarea { get; set; }
+
+    public string? Oficina { get; set; }
+
     public virtual Funcione? Funcion { get; set; }
 }

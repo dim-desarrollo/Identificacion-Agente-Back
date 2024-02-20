@@ -18,7 +18,9 @@ class Mappers
                 Activo = ele.Activo,
                 NombreCompleto = ele.NombreCompleto,
                 HashLagajo = ele.HashLagajo,
-                UrlImagen = ele.UrlImagen 
+                UrlImagen = ele.UrlImagen,
+                Tarea = ele.Tarea,
+                Oficina = ele.Oficina 
 
             }).ToArray();
 
@@ -38,7 +40,10 @@ class Mappers
                 Activo = inspectoreModel.Activo,
                 NombreCompleto = inspectoreModel.NombreCompleto,
                 UrlImagen = inspectoreModel.UrlImagen,
-                HashLagajo = inspectoreModel.HashLagajo
+                HashLagajo = inspectoreModel.HashLagajo,
+                Tarea = inspectoreModel.Tarea,
+                Oficina = inspectoreModel.Oficina 
+
                 
             };
 
