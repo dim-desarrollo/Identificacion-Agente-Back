@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // Add services to the container.
-
+// como asdas
 builder.Services.AddControllers().AddJsonOptions(opc =>
 {
     opc.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
