@@ -131,7 +131,7 @@ agent any
                       //sh 'dotnet publish ${CARPETA_APLICACION}inspectores-api.csproj -c Realese -o published'
 
 
-                      
+
                       sh 'dotnet publish inspectores_api -c Realese -o published'
    
 
@@ -170,17 +170,15 @@ agent any
 
     stage('Message finish deploy') {
 
-/*
-
         steps {
 
             sh "echo ${HORA_DESPLIEGUE}"
 
-            discordSend description: "(DEV) Deploy backEnd-inspectores echo!!!", footer: "Hora de inicio de despliegue: ${HORA_DESPLIEGUE} ", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy front-ubicacion-padronesEstaciones", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
+            //discordSend description: "(DEV) Deploy backEnd-inspectores echo!!!", footer: "Hora de inicio de despliegue: ${HORA_DESPLIEGUE} ", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy front-ubicacion-padronesEstaciones", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
 
   
       }
-*/
+
 
     }
 
