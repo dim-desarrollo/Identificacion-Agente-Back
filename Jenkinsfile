@@ -72,15 +72,14 @@ agent any
 
     stage('Message start deploy dev') {
 
-        /*
 
         steps {
 
-            discordSend description: "Inicio de deploy en DEV!!!", footer: "Inicado", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy backEnd-inspectores", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
+            echo "Inicio Deploy"
+            //discordSend description: "Inicio de deploy en DEV!!!", footer: "Inicado", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy backEnd-inspectores", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
 
         }
 
-        */
 
     }
 
