@@ -182,7 +182,7 @@ c
                         error "Dockerfile not found"
                     }
 
-                    sh "docker build -t ${IDENTIFICADOR_IMAGEN} ."
+                    sh "docker build -t ${IDENTIFICADOR_IMAGEN}:001 ."
 
                     //sh "docker run -d -p ${PUERTO_EXTERNO}:${PUERTO_INTERNO} --name ${NOMBRE_CONTENEDOR} ${IDENTIFICADOR_IMAGEN}"
 
