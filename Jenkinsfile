@@ -39,7 +39,7 @@ agent any
         jdk 'java20'
         dockerTool 'docker-2'
         nodejs 'node-js'
-        //dotnet 'net8.0.1'
+        dotnetsdk  'net8.0.1'
     }
 
     environment {
@@ -72,11 +72,14 @@ agent any
 
     stage('Message start deploy dev') {
 
+
         steps {
 
-            discordSend description: "Inicio de deploy en DEV!!!", footer: "Inicado", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy backEnd-inspectores", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
+            echo "Inicio Deploy"
+            //discordSend description: "Inicio de deploy en DEV!!!", footer: "Inicado", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy backEnd-inspectores", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
 
         }
+
 
     }
 
@@ -99,49 +102,6 @@ agent any
         }
 
     }
-
-       /*
-
-    stage('SonarQube Analysis') {
-
-    environment {
-
-        SONAR_SCANNER_HOME = tool 'sonarScaner' //nombre en la configuracion de las tools de jenkins 
-        SONAR_SERVER = 'sonarqube' 
-        SONAR_HOST_IP = '172.17.0.4' // IP interna de Docker de SonarQube, debido a que SonarQube corre en un contenedor (docker inspect nombre_contenedo_SonarQube)
-        SONAR_PORT = '9000' //puerto donde esta trabajando el contenedor
-        SONAR_SRC = 'src/'
-        SONAR_ENCODING = 'UTF-8'
-        DOTNET_VERSION = sh(script: 'dotnet --version', returnStdout: true).trim()
-
-
-    }
-
-   
-    steps {
-
-      
-            
-            dir("${CARPETA_APLICACION}"){
-                withSonarQubeEnv(installationName: "${SONAR_SERVER}", credentialsId: "${SONARQUBE_CREDENCIALES}") {
-                    sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner \
-                        -Dsonar.projectName=${ARTIFACT_ID} \
-                        -Dsonar.projectVersion=${PROYECTO_VERSION} \
-                        -Dsonar.projectKey=${IDENTIFICADOR_PROYECTO} \
-                        -Dsonar.host.url=http://${SONAR_HOST_IP}:${SONAR_PORT} \
-                        -Dsonar.sources=${SONAR_SRC} \
-                        -Dsonar.java.binaries=. \
-                        -Dsonar.sourceEncoding=${SONAR_ENCODING}"
-                }
-            }
-
-       
-c
-        c}
-
-     
-    }  
-            */
 
       stage('Tools initialization') {
           steps {
@@ -166,13 +126,14 @@ c
                   //echo "Node version: ${NODE_VERSION}"
                   //sh 'echo "dotnet version: ${DOTNET_VERSION}"'
 
-                    /*
-                  dir ("${CARPETA_APLICACION}"){
+                      echo "Crear Ejecutable"
                       //sh 'dotnet publish ${CARPETA_APLICACION}inspectores-api.csproj -c Realese -o published'
-                      sh 'dotnet publish inspectores_api -c Realese -o published'
-                  }
 
-                  */
+
+
+                      //sh 'dotnet publish inspectores_api -c Realese -o published'
+   
+
               }
           }
       }
@@ -208,14 +169,15 @@ c
 
     stage('Message finish deploy') {
 
-
         steps {
 
             sh "echo ${HORA_DESPLIEGUE}"
 
-            discordSend description: "(DEV) Deploy backEnd-inspectores echo!!!", footer: "Hora de inicio de despliegue: ${HORA_DESPLIEGUE} ", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy front-ubicacion-padronesEstaciones", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
+            //discordSend description: "(DEV) Deploy backEnd-inspectores echo!!!", footer: "Hora de inicio de despliegue: ${HORA_DESPLIEGUE} ", link: env.BUILD_URL, result: currentBuild.currentResult, title: "(DEV) Deploy front-ubicacion-padronesEstaciones", webhookURL: "https://discord.com/api/webhooks/1173648912838561922/iB8YUryvKbcj66EWQa2e6161BDuygkfaMx57VUalxPnDAMvoRHcYKxJTaxV4nfBEdoxi"
 
-        }
+  
+      }
+
 
     }
 
