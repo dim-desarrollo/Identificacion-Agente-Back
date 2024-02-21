@@ -19,12 +19,11 @@ public partial class InspectoresContext : DbContext
 
     public virtual DbSet<Inspectore> Inspectores { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Database=inspectores;Username=root;Password=root;Port=9008");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasPostgresExtension("pgcrypto");
+
         modelBuilder.Entity<Funcione>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("funciones_pkey");
@@ -58,9 +57,7 @@ public partial class InspectoresContext : DbContext
             entity.Property(e => e.NumeroAfiliado)
                 .HasMaxLength(255)
                 .HasColumnName("numero_afiliado");
-            entity.Property(e => e.Oficina).HasColumnName("oficina");
             entity.Property(e => e.QrBase64).HasColumnName("qr_base_64");
-            entity.Property(e => e.Tarea).HasColumnName("tarea");
             entity.Property(e => e.UrlImagen).HasColumnName("url_imagen");
 
             entity.HasOne(d => d.Funcion).WithMany(p => p.Inspectores)

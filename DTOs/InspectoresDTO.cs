@@ -20,11 +20,6 @@ public class InspectoresDTO
 
     public string? QrBase64 {get;set;}
 
-    public string? Tarea { get; set; }
-
-    public string? Oficina { get; set; }
-
-
     public string? HashLagajo
     {
          get{ return hashLagajo;}
