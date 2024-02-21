@@ -131,7 +131,7 @@ agent any
 
 
 
-                      sh 'dotnet publish inspectores_api -c Realese -o published'
+                      //sh 'dotnet publish inspectores_api -c Realese -o published'
    
 
               }
