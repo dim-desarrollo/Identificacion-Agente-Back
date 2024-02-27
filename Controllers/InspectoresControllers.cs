@@ -64,11 +64,11 @@ public class InspectoresControllers : ControllerBase
 
     {
         var inspectore = await db.Inspectores.Include(f => f.Funcion).FirstOrDefaultAsync(ele => ele.NumeroAfiliado == subitImaenDTO.Legajo);
-
+    
         if (inspectore != null)
         {
-
-            inspectore.UrlImagen = GuardarImagenEnServidor(subitImaenDTO.Imagen);
+               
+            inspectore.UrlImagen = GuardarImagenEnServidor(subitImaenDTO.Imagen,inspectore.Documento);
             await db.SaveChangesAsync();
             return Ok("se guardo con exito");
         }
@@ -77,7 +77,7 @@ public class InspectoresControllers : ControllerBase
     }    
 
 
-    private string GuardarImagenEnServidor(IFormFile imagen)
+    private string GuardarImagenEnServidor(IFormFile imagen, string documento)
     {
         var currentDirectoryDirtory = Directory.GetCurrentDirectory();
             currentDirectoryDirtory += @"/imagenes";
@@ -87,7 +87,7 @@ public class InspectoresControllers : ControllerBase
                 Directory.CreateDirectory(currentDirectoryDirtory);
             }
 
-            var namefile = $"{DateTime.Now:yyyyMMddHHmmssfff}_{imagen.FileName}";
+            var namefile = $"{documento}_{imagen.FileName}";
 
             var saveDbPath = $"/imagenes/{namefile}";
 
